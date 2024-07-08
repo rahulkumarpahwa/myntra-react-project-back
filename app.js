@@ -14,6 +14,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/", (req, res) => {
+  res.json("Server is working.");
+});
+
 app.get("/items", async (req, res) => {
   const storedItems = await getStoredItems();
   // await new Promise((resolve, reject) => setTimeout(() => resolve(), 4000));
@@ -38,4 +42,7 @@ app.post("/items", async (req, res) => {
   res.status(201).json({ message: "Stored new item.", item: newItem });
 });
 
-app.listen(8080);
+app.listen(8080, () => {
+  console.log("Server has started at port 8080")
+  console.log("Click here to : http://localhost:8080");
+});
